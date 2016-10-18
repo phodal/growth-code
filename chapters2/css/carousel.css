@@ -85,7 +85,7 @@ body {
 ------------------------- */
 
 .featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+  margin: 40px 0; /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
@@ -93,6 +93,16 @@ body {
   font-weight: 300;
   line-height: 1;
   letter-spacing: -1px;
+}
+
+.featurette span {
+  margin:0 auto;
+  width: 200px;
+  top: 150px;
+  left: 150px;
+}
+.featurette .feature-icon {
+  font-size: 200px;
 }
 
 
@@ -132,6 +142,12 @@ body {
 
 @media (min-width: 992px) {
   .featurette-heading {
-    margin-top: 120px;
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .feature-icon {
+    display: none;
   }
 }
