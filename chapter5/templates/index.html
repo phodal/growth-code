@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +12,8 @@
 
     <title>Growth Studio - Enjoy Create & Share</title>
 
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/carousel.css" rel="stylesheet">
+    <link href='{% static "css/bootstrap.min.css" %}' rel="stylesheet">
+    <link href='{% static "css/carousel.css" %}' rel="stylesheet">
 </head>
 <!-- NAVBAR
 ================================================== -->
@@ -179,8 +181,8 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/static/js/vendor/jquery-3.1.1.min.js"></script>
-<script src="/static/js/vendor/bootstrap.min.js"></script>
-<script src="/static/js/vendor/holder.min.js"></script>
+<script src='{% static "js/vendor/jquery-3.1.1.min.js" %}'></script>
+<script src='{% static "js/vendor/bootstrap.min.js" %}'></script>
+<script src='{% static "js/vendor/holder.min.js" %}'></script>
 </body>
 </html>
