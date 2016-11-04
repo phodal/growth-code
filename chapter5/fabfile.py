@@ -23,12 +23,19 @@ def pep8():
 
 @task
 def tag_version(version):
-    "Tag New Version"
+    """Tag New Version"""
     local("git tag %s" % version)
     local("git push origin %s"%version)
 
 
 @task
 def fetch_version(version):
-    "Fetch Git Version"
+    """Fetch Git Version"""
     local('wget https://codeload.github.com/phodal/growth_studio/tar.gz/%s'%version)
+
+
+@task
+def test():
+    """ Run Test """
+    local("./manage.py test")
+
