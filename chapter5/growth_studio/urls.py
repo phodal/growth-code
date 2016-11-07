@@ -18,6 +18,6 @@ from django.contrib import admin
 from homepage.views import index as home
 
 urlpatterns = [
-    url(r'^$', home, name='home'),
+    url(r'^$', home),
     url(r'^admin/', admin.site.urls),
 ]
