@@ -9,8 +9,8 @@ class Blog(models.Model):
     body = models.TextField()
     posted = models.DateField(db_index=True, auto_now_add=True)
 
-    def __unicode__(self):
-        return '%s' % self.title
+    def __str__(self):
+        return '%s - %s' % (self.posted, self.title)
 
     @permalink
     def get_absolute_url(self):
