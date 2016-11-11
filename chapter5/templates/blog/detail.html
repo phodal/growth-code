@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div>
+        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+    </div>
+    {{post.body}}
+    <p>
+        {{post.posted}} - By {{post.author}}
+    </p>
+</div>
+{% endblock %}
+
