@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row">
-    <div>
-        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+<div class="container blog-list">
+    <div class="row">
+        <article>
+            <div>
+                <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+                {{post.posted}} - By {{post.author}}
+            </div>
+
+            <p>{{post.body}}</p>
+        </article>
     </div>
-    {{post.body}}
-    <p>
-        {{post.posted}} - By {{post.author}}
-    </p>
 </div>
 {% endblock %}
 

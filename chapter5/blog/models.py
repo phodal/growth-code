@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import permalink
 
@@ -14,4 +15,4 @@ class Blog(models.Model):
 
     @permalink
     def get_absolute_url(self):
-        return 'view_blog_post', None, {'slug': self.slug}
+        return 'blog_view', None, {'slug': self.slug}

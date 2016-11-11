@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
+<div class="container blog-list">
     <div class="row">
         {% if blogs %}
         {% for blog in blogs %}
         <div class="col-sm-4">
-            <h2><a href="{{ post.get_absolute_url }}" id="">{{ blog.title }}</a></h2>
+            <h2><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a></h2>
             {{blog.body | slice:":80"}}
             {{blog.posted}} - By {{blog.author}}
         </div>
