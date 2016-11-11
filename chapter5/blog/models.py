@@ -9,9 +9,9 @@ class Blog(models.Model):
         verbose_name = _('博客')
         verbose_name_plural = _('博客')
 
-    title = models.CharField(max_length=100, unique=True, verbose_name=_('标题'))
-    author = models.CharField(max_length=100, unique=True, verbose_name=_('作者'))
-    slug = models.SlugField(max_length=100, unique=True, verbose_name=_('URL'))
+    title = models.CharField(max_length=30, unique=True, verbose_name=_('标题'))
+    author = models.CharField(max_length=20, verbose_name=_('作者'))
+    slug = models.SlugField(max_length=50, unique=True, verbose_name=_('URL'))
     body = models.TextField(verbose_name=_('正文'))
     posted = models.DateField(db_index=True, auto_now_add=True)
 
