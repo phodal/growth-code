@@ -33,7 +33,6 @@ class HomepageTestCase(LiveServerTestCase):
         )
         self.selenium.find_element_by_link_text('博客').click()
 
-        self.selenium.implicitly_wait(30)
         self.assertIn("This is blog detail",
                       self.selenium.page_source)
 
