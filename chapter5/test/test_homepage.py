@@ -1,12 +1,12 @@
 from datetime import datetime
 from django.contrib.auth.models import User
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 
 from blog.models import Blog
 
 
-class HomepageTestCase(LiveServerTestCase):
+class HomepageTestCase(StaticLiveServerTestCase):
     def setUp(self):
         self.selenium = webdriver.Chrome()
         self.selenium.maximize_window()
