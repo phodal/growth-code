@@ -24,13 +24,15 @@ class BlogpostListTest(TestCase):
 
 
 class BlogpostDetailTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username='phodal', email='h@phodal.com', password='phodal')
+
     def test_blogpost_url_resolves_to_blog_post_detail_view(self):
         found = resolve('/blog/this_is_a_test.html')
         self.assertEqual(found.func, blog_detail)
 
     def test_blogpost_create_with_view(self):
-        user = User.objects.create_user(username='phodal', email='h@phodal.com', password='phodal')
-        Blog.objects.create(title='hello', author=user, slug='this_is_a_test', body='This is blog detail',
+        Blog.objects.create(title='hello', author=self.user, slug='this_is_a_test', body='This is blog detail',
                             posted=datetime.now)
         response = self.client.get('/blog/this_is_a_test.html')
         self.assertIn(b'This is blog detail', response.content)
