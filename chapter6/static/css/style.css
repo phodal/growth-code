@@ -1,0 +1,25 @@
+.blog-list {
+    margin-top: 100px;
+}
+
+footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:40px;
+   line-height: 40px;
+   width:100%;
+   background:#101010;
+   color: #fff;
+}
+
+footer p.copyright {
+   width: 80%;
+   margin: 0 auto;
+}
+
+/* IE 6 */
+* html footer {
+   position:absolute;
+   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+}
