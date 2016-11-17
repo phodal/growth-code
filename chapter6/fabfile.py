@@ -1,7 +1,13 @@
+import os
+
 from fabric.api import local
 from fabric.decorators import task
-from fabric.context_managers import settings, hide
-from fabric.operations import sudo, run
+from fabric.context_managers import settings, hide, cd
+from fabric.operations import sudo, run, put
+
+nginx_config_path = os.path.realpath('deploy/nginx')
+nginx_avaliable_path = "/etc/nginx/sites-available/"
+nginx_enable_path = "/etc/nginx/sites-enabled/"
 
 
 @task
@@ -60,6 +66,28 @@ def setup():
     run('virtualenv --distribute -p /usr/bin/python3.5 py35env')
 
 
+def nginx_reset():
+    "Reset nginx"
+    run("service nginx restart")
+
+
+def nginx_start():
+    "Start nginx"
+    run("service nginx start")
+
+
+def nginx_config(nginx_config_path=nginx_config_path):
+    "Send nginx configuration"
+    for file_name in os.listdir(nginx_config_path):
+        put(os.path.join(nginx_config_path, file_name), nginx_avaliable_path)
+
+
+def nginx_enable_site(nginx_config_file):
+    "Enable nginx site"
+    with cd(nginx_enable_path):
+        run('ln -s ' + nginx_avaliable_path + nginx_config_file)
+
+
 @task
 def deploy(version):
     """ depoly app to cloud """
@@ -74,3 +102,7 @@ def deploy(version):
     run('source py35env/bin/activate')
     run('pip3 install -r growth-studio-%s/requirements/prod.txt' % version)
     run('ln -s growth-studio-%s growth-studio' % version)
+
+    run('cd growth_studio')
+    run('manage.py collectstatic -l --noinput')
+    run('manage.py migrate')
