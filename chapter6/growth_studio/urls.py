@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
 from homepage.views import index
 from blog.views import blog_list
 from blog.views import blog_detail
@@ -25,3 +27,6 @@ urlpatterns = [
     url(r'^blog/$', blog_list),
     url(r'^blog/(?P<slug>[^\.]+).html', blog_detail, name='blog_view'),
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+
