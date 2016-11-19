@@ -107,12 +107,7 @@ def circus_upstart_config():
 
 def circus_start():
     "Send Circus Upstart configuration"
-    sudo('/usr/local/bin/circusd /etc/circus/circusd.ini --daemon')
-
-
-def circus_reload():
-    "Send Circus Upstart configuration"
-    sudo('/usr/local/bin/circusd /etc/circus/circusd.ini --daemon')
+    sudo('/usr/local/bin/circusd /etc/circus/circus.ini --daemon')
 
 
 def nginx_enable_site(nginx_config_file):
@@ -150,4 +145,3 @@ def deploy(version):
     circus_start()
 
     nginx_restart()
-
