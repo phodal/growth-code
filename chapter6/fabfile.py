@@ -4,10 +4,15 @@ from fabric.api import local
 from fabric.decorators import task
 from fabric.context_managers import settings, hide, cd
 from fabric.operations import sudo, run, put
+from fabric.state import env
 
 nginx_config_path = os.path.realpath('deploy/nginx')
 nginx_avaliable_path = "/etc/nginx/sites-available/"
 nginx_enable_path = "/etc/nginx/sites-enabled/"
+
+env.hosts = ['10.211.55.26']
+env.user = 'phodal'
+env.password = '940217'
 
 
 @task
@@ -49,6 +54,12 @@ def test():
 
 
 @task
+def ls():
+    """ List Remote Path """
+    run("ls")
+
+
+@task
 def setup():
     """ Setup the Ubuntu Env """
     sudo('apt-get update')
@@ -62,6 +73,7 @@ def setup():
         "virtualenv",
     ]
     sudo("apt-get install " + " ".join(APT_GET_PACKAGES))
+    sudo('pip3 install circus')
     sudo('pip3 install virtualenv')
     run('virtualenv --distribute -p /usr/bin/python3.5 py35env')
 
@@ -106,3 +118,5 @@ def deploy(version):
     run('cd growth_studio')
     run('manage.py collectstatic -l --noinput')
     run('manage.py migrate')
+
+    nginx_config()
