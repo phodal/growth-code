@@ -75,6 +75,7 @@ def setup():
     ]
     sudo("apt-get install " + " ".join(APT_GET_PACKAGES))
     sudo('pip3 install circus')
+    sudo('rm ' + nginx_enable_path + 'default')
     run('virtualenv --distribute -p /usr/bin/python3.5 py35env')
 
 
@@ -113,7 +114,7 @@ def circus_start():
 def nginx_enable_site(nginx_config_file):
     "Enable nginx site"
     with cd(nginx_enable_path):
-        run('ln -s ' + nginx_avaliable_path + nginx_config_file)
+        sudo('ln -s ' + nginx_avaliable_path + nginx_config_file)
 
 
 @task
