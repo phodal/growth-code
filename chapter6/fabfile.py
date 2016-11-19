@@ -73,7 +73,7 @@ def setup():
         "nginx",
         "virtualenv",
     ]
-    sudo("apt-get install " + " ".join(APT_GET_PACKAGES))
+    sudo("apt-get install -y " + " ".join(APT_GET_PACKAGES))
     sudo('pip3 install circus')
     sudo('rm ' + nginx_enable_path + 'default')
     run('virtualenv --distribute -p /usr/bin/python3.5 py35env')
