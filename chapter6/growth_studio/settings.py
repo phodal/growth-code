@@ -25,8 +25,21 @@ SECRET_KEY = 'q2c4xbdh)hf-$z7v1dyai3n^+(g%l5ogi17rm+rud^ysbx-(h0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'growth.studio.ren'
+]
 
+SECURE_HSTS_SECONDS = True
+SECURE_SSL_REDIRECT = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY= True
+
+X_FRAME_OPTIONS = 'DENY'
 
 # Application definition
 
