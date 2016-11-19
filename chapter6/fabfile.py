@@ -6,6 +6,8 @@ from fabric.context_managers import settings, hide, cd
 from fabric.operations import sudo, run, put
 from fabric.state import env
 
+circus_file_path = os.path.realpath('deploy/circus.ini')
+circus_upstart_file_path = os.path.realpath('deploy/circus.conf')
 nginx_config_path = os.path.realpath('deploy/nginx')
 nginx_avaliable_path = "/etc/nginx/sites-available/"
 nginx_enable_path = "/etc/nginx/sites-enabled/"
@@ -67,18 +69,16 @@ def setup():
         "build-essential",
         "git",
         "python3-dev",
-        "python3-virtualenv",
         "python3-pip",
         "nginx",
         "virtualenv",
     ]
     sudo("apt-get install " + " ".join(APT_GET_PACKAGES))
     sudo('pip3 install circus')
-    sudo('pip3 install virtualenv')
     run('virtualenv --distribute -p /usr/bin/python3.5 py35env')
 
 
-def nginx_reset():
+def nginx_restart():
     "Reset nginx"
     run("service nginx restart")
 
@@ -91,7 +91,28 @@ def nginx_start():
 def nginx_config(nginx_config_path=nginx_config_path):
     "Send nginx configuration"
     for file_name in os.listdir(nginx_config_path):
-        put(os.path.join(nginx_config_path, file_name), nginx_avaliable_path)
+        put(os.path.join(nginx_config_path, file_name), nginx_avaliable_path, use_sudo=True)
+
+
+def circus_config():
+    "Send Circus configuration"
+    sudo('mkdir -p /etc/circus/')
+    put(circus_file_path, '/etc/circus/', use_sudo=True)
+
+
+def circus_upstart_config():
+    "Send Circus Upstart configuration"
+    put(circus_upstart_file_path, '/etc/init/', use_sudo=True)
+
+
+def circus_start():
+    "Send Circus Upstart configuration"
+    sudo('/usr/local/bin/circusd /etc/circus/circusd.ini --daemon')
+
+
+def circus_reload():
+    "Send Circus Upstart configuration"
+    sudo('/usr/local/bin/circusd /etc/circus/circusd.ini --daemon')
 
 
 def nginx_enable_site(nginx_config_file):
@@ -120,3 +141,13 @@ def deploy(version):
     run('manage.py migrate')
 
     nginx_config()
+    nginx_enable_site('growth-studio.conf')
+
+    circus_config()
+    circus_upstart_config()
+
+    run('deactivate')
+    circus_start()
+
+    nginx_restart()
+
