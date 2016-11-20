@@ -115,7 +115,7 @@ def circus_start():
 def nginx_enable_site(nginx_config_file):
     "Enable nginx site"
     with cd(nginx_enable_path):
-        sudo('rm ' + nginx_config_file)
+        sudo('rm -f ' + nginx_config_file)
         sudo('ln -s ' + nginx_avaliable_path + nginx_config_file)
 
 
@@ -148,7 +148,7 @@ def config_app():
 def setup_app(version):
     with prefix('source ' + virtual_env_path):
         run('pip3 install -r growth-studio-%s/requirements/prod.txt' % version)
-        run('rm growth-studio')
+        run('rm -f growth-studio')
         run('ln -s growth-studio-%s growth-studio' % version)
 
 
