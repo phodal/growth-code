@@ -7,7 +7,7 @@
     - name: install nginx
       apt: name=nginx update_cache=yes
     - name: copy nginx config file
-      copy: src=deploy/nginx.conf dest=/etc/nginx/sites-available/default
+      copy: src=deploy/nginx/growth-studio.conf dest=/etc/nginx/sites-available/default
     - name: enable configuration
       file: >
         dest=/etc/nginx/sites-enabled/default
