@@ -57,7 +57,7 @@ def test():
 
 @task
 def host_type():
-    run('uname -s')
+    run('uname -a')
 
 
 @task
