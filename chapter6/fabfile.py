@@ -11,6 +11,7 @@ circus_upstart_file_path = os.path.realpath('deploy/circus.conf')
 nginx_config_path = os.path.realpath('deploy/nginx')
 nginx_avaliable_path = "/etc/nginx/sites-available/"
 nginx_enable_path = "/etc/nginx/sites-enabled/"
+app_path = "~/"
 
 env.hosts = ['10.211.55.26']
 env.user = 'phodal'
@@ -119,21 +120,9 @@ def nginx_enable_site(nginx_config_file):
 @task
 def deploy(version):
     """ depoly app to cloud """
-    run('cd ~/')
-    run(('wget ' + 'https://codeload.github.com/phodal/growth_studio/tar.gz/v' + '%s') % version)
-    run('tar xvf v%s' % version)
-
-    # run('rm -rf growth-studio')
-    # run('mv growth-studio-%s growth-studio'%version)
-    # run('rm v%s'%version)
-
-    run('source py35env/bin/activate')
-    run('pip3 install -r growth-studio-%s/requirements/prod.txt' % version)
-    run('ln -s growth-studio-%s growth-studio' % version)
-
-    run('cd growth_studio')
-    run('manage.py collectstatic -l --noinput')
-    run('manage.py migrate')
+    get_app(version)
+    setup_app(version)
+    config_app()
 
     nginx_config()
     nginx_enable_site('growth-studio.conf')
@@ -145,3 +134,22 @@ def deploy(version):
     circus_start()
 
     nginx_restart()
+
+
+def config_app():
+    with cd(app_path + '/growth_studio'):
+        run('manage.py collectstatic -l --noinput')
+        run('manage.py migrate')
+
+
+def setup_app(version):
+    with cd(app_path):
+        run('source py35env/bin/activate')
+        run('pip3 install -r growth-studio-%s/requirements/prod.txt' % version)
+        run('ln -s growth-studio-%s growth-studio' % version)
+
+
+def get_app(version):
+    with cd(app_path):
+        run(('wget ' + 'https://codeload.github.com/phodal/growth_studio/tar.gz/v' + '%s') % version)
+        run('tar xvf v%s' % version)
