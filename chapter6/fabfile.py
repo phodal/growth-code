@@ -12,6 +12,7 @@ nginx_config_path = os.path.realpath('deploy/nginx')
 nginx_avaliable_path = "/etc/nginx/sites-available/"
 nginx_enable_path = "/etc/nginx/sites-enabled/"
 app_path = "~/"
+virtual_env_path = "~/py35env/bin/activate"
 
 env.hosts = ['10.211.55.26']
 env.user = 'phodal'
@@ -120,9 +121,11 @@ def nginx_enable_site(nginx_config_file):
 @task
 def deploy(version):
     """ depoly app to cloud """
-    get_app(version)
-    setup_app(version)
-    config_app()
+    with cd(app_path):
+        run('source ' + virtual_env_path)
+        get_app(version)
+        setup_app(version)
+        config_app()
 
     nginx_config()
     nginx_enable_site('growth-studio.conf')
@@ -137,19 +140,16 @@ def deploy(version):
 
 
 def config_app():
-    with cd(app_path + '/growth_studio'):
+    with cd('growth_studio'):
         run('manage.py collectstatic -l --noinput')
         run('manage.py migrate')
 
 
 def setup_app(version):
-    with cd(app_path):
-        run('source py35env/bin/activate')
-        run('pip3 install -r growth-studio-%s/requirements/prod.txt' % version)
-        run('ln -s growth-studio-%s growth-studio' % version)
+    run('pip3 install -r growth-studio-%s/requirements/prod.txt' % version)
+    run('ln -s growth-studio-%s growth-studio' % version)
 
 
 def get_app(version):
-    with cd(app_path):
-        run(('wget ' + 'https://codeload.github.com/phodal/growth_studio/tar.gz/v' + '%s') % version)
-        run('tar xvf v%s' % version)
+    run(('wget ' + 'https://codeload.github.com/phodal/growth_studio/tar.gz/v' + '%s') % version)
+    run('tar xvf v%s' % version)
