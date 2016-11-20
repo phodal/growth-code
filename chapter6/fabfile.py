@@ -56,9 +56,8 @@ def test():
 
 
 @task
-def ls():
-    """ List Remote Path """
-    run("ls")
+def host_type():
+    run('uname -s')
 
 
 @task
