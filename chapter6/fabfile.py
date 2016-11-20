@@ -2,7 +2,7 @@ import os
 
 from fabric.api import local
 from fabric.decorators import task
-from fabric.context_managers import settings, hide, cd
+from fabric.context_managers import settings, hide, cd, prefix
 from fabric.operations import sudo, run, put
 from fabric.state import env
 
@@ -11,7 +11,7 @@ circus_upstart_file_path = os.path.realpath('deploy/circus.conf')
 nginx_config_path = os.path.realpath('deploy/nginx')
 nginx_avaliable_path = "/etc/nginx/sites-available/"
 nginx_enable_path = "/etc/nginx/sites-enabled/"
-app_path = "~/"
+app_path = "~"
 virtual_env_path = "~/py35env/bin/activate"
 
 env.hosts = ['10.211.55.26']
@@ -115,6 +115,7 @@ def circus_start():
 def nginx_enable_site(nginx_config_file):
     "Enable nginx site"
     with cd(nginx_enable_path):
+        sudo('rm ' + nginx_config_file)
         sudo('ln -s ' + nginx_avaliable_path + nginx_config_file)
 
 
@@ -122,7 +123,6 @@ def nginx_enable_site(nginx_config_file):
 def deploy(version):
     """ depoly app to cloud """
     with cd(app_path):
-        run('source ' + virtual_env_path)
         get_app(version)
         setup_app(version)
         config_app()
@@ -133,21 +133,23 @@ def deploy(version):
     circus_config()
     circus_upstart_config()
 
-    run('deactivate')
     circus_start()
 
     nginx_restart()
 
 
 def config_app():
-    with cd('growth_studio'):
-        run('manage.py collectstatic -l --noinput')
-        run('manage.py migrate')
+    with cd('growth-studio'):
+        with prefix('source ' + virtual_env_path):
+            run('python manage.py collectstatic -l --noinput')
+            run('python manage.py migrate')
 
 
 def setup_app(version):
-    run('pip3 install -r growth-studio-%s/requirements/prod.txt' % version)
-    run('ln -s growth-studio-%s growth-studio' % version)
+    with prefix('source ' + virtual_env_path):
+        run('pip3 install -r growth-studio-%s/requirements/prod.txt' % version)
+        run('rm growth-studio')
+        run('ln -s growth-studio-%s growth-studio' % version)
 
 
 def get_app(version):
