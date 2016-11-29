@@ -17,6 +17,14 @@
  devops     | 部署相关的配置文件
  tdd        | 一个简单的 TDD Demo
 
+
+Jenkins Plugins
+---
+
+Download:
+
+- 百度云盘：[https://pan.baidu.com/s/1c1LgTkG](https://pan.baidu.com/s/1c1LgTkG)
+
 Web Driver
 ---
 
