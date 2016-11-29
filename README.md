@@ -1,5 +1,5 @@
-《Growth: Web开发思想》源码
----
+《Growth: 全栈Web开发思想》源码
+===
 
 > The Source Code of Growth Paper
 
@@ -18,7 +18,7 @@
  tdd        | 一个简单的 TDD Demo
 
 
-Jenkins Plugins
+Jenkins插件
 ---
 
 Download:
@@ -43,6 +43,8 @@ Web Driver
 License
 ---
 
+ [![Phodal's Book](http://brand.phodal.com/shields/book-small.svg)](https://www.phodal.com/)
+ 
 © 2016 [Phodal Huang][phodal]. This code is distributed under the MIT
 license.
 
