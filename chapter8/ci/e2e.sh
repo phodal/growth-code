@@ -1,2 +1,2 @@
 . py35env/bin/activate
-fab test
+python manage.py test e2e

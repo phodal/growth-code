@@ -5,4 +5,3 @@ if [ ! -d "venv" ]; then
   virtualenv --distribute -p /usr/local/bin/python3.5 py35env
 fi
 . py35env/bin/activate
-pip install -r requirements.txt --download-cache=/tmp/$JOB_NAME
