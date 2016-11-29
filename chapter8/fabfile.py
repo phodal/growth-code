@@ -39,6 +39,12 @@ def pep8():
 
 
 @task
+def e2e():
+    """Run Server"""
+    local("./manage.py test e2e")
+
+
+@task
 def tag_version(version):
     """Tag New Version"""
     local("git tag %s" % version)
