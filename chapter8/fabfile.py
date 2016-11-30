@@ -60,7 +60,7 @@ def fetch_version(version):
 @task
 def test():
     """ Run Test """
-    local("./manage.py test")
+    local("./manage.py test blog")
 
 
 @task
