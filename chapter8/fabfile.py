@@ -39,12 +39,6 @@ def pep8():
 
 
 @task
-def e2e():
-    """Run Server"""
-    local("./manage.py test e2e")
-
-
-@task
 def tag_version(version):
     """Tag New Version"""
     local("git tag %s" % version)
@@ -61,6 +55,23 @@ def fetch_version(version):
 def test():
     """ Run Test """
     local("./manage.py test blog")
+
+
+@task
+def e2e():
+    """Run E2E Test"""
+    local("./manage.py test e2e")
+
+
+@task
+def prepare_ac():
+    run('echo "from django.contrib.auth.models import User; User.objects.create_superuser(%s, %s, %s)" | python manage.py shell' % ('test', 'test@phodal.com', 'test'))
+
+
+@task
+def ac():
+    """Run E2E Test"""
+    local("./manage.py test ac")
 
 
 @task
