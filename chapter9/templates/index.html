@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img class="first-slide"
+                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                 alt="First slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>《Growth：全栈增长工程师指南 》</h1>
+                    <p>可以帮助你构建你的知识体系，这也是其他技术书籍所欠缺的。它可以告诉你，你可以学习什么，然后看什么书。</p>
+                    <p><a class="btn btn-lg btn-primary" href="https://github.com/phodal/growth-ebook" role="button">立即阅读</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img class="second-slide"
+                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                 alt="Second slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>《Growth：全栈增长工程师实战》</h1>
+                    <p>在Growth中我们介绍的只是一系列的实践，而Growth实战则会带领读者去履行这些实践。</p>
+                    <p><a class="btn btn-lg btn-primary" href="https://github.com/phodal/growth-in-action"
+                          role="button">立即阅读</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img class="third-slide"
+                 src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
+                 alt="Third slide">
+            <div class="container">
+                <div class="carousel-caption">
+                    <h1>《Growth：增长工程师修炼之道》</h1>
+                    <p>Coming soon...</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">尽请期待</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">上一个</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">下一个</span>
+    </a>
+</div>
+
+<div class="container marketing">
+    <div class="row">
+        <div class="col-lg-4">
+            <span class="glyphicon marketing-icon glyphicon-grain" aria-hidden="true"></span>
+            <h2>Open Source</h2>
+            <p>我们创建了一系列的相关的开源项目，你可以从这些项目里获取灵感。这些项目并不仅包含代码，还包含文档、示例、设计思想。</p>
+            <p><a class="btn btn-default" href="/about" role="button">查看详细</a></p>
+        </div>
+        <div class="col-lg-4">
+            <span class="glyphicon marketing-icon glyphicon-pencil" aria-hidden="true"></span>
+            <h2>Create</h2>
+            <p>作为程序员，我们天性喜欢创造。从创造一个新的英语单词，制造一个新的轮子，每一天，我们都觉得自己因此而与众不同。</p>
+            <p><a class="btn btn-default" href="/about" role="button">查看详细</a></p>
+        </div>
+        <div class="col-lg-4">
+            <span class="glyphicon marketing-icon glyphicon-globe" aria-hidden="true"></span>
+            <h2>Share</h2>
+            <p>正是分享使我们有机会学会到更多的知识，我们也将我们学到的知识分享给更多的人们，让不同的地方的人们可以聚集学习。</p>
+            <p><a class="btn btn-default" href="/about" role="button">查看详细</a></p>
+        </div>
+    </div>
+
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Growth App</h2>
+            <div class="lead">
+                <p>Growth是一款专注于Web开发者成长的应用，涵盖Web开发的流程及技术栈，Web开发的学习路线、成长衡量等各方面。</p>
+                <p>在这里你可以get到：</p>
+                <ul>
+                    <li>不同阶段所需的不同技能</li>
+                    <li>相关书单推荐</li>
+                    <li>获取不同的学习路线</li>
+                    <li>寻找合适的练手项目</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <span class="glyphicon glyphicon-th-large feature-icon"></span>
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+            <h2 class="featurette-heading">Growth EBook</h2>
+            <div class="lead">
+                <p>Growth电子书系列可以帮助你更好的构建Web开发知识体系，它包含有下面几本电子书：</p>
+                <ul>
+                    <li>增长工程师指南</li>
+                    <li>增长工程师实战</li>
+                    <li>增长工程师的练手项目集</li>
+                    <li>增长工程师的工具箱</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+            <span class="glyphicon glyphicon-book feature-icon"></span>
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+</div><!-- /.container -->
+{% endblock %}

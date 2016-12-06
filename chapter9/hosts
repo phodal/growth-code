@@ -1,0 +1,2 @@
+[server]
+10.211.55.26 ansible_ssh_pass=940217 ansible_ssh_user=phodal
