@@ -27,12 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    'localhost',
     'growth.studio.ren'
 ]
-
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_HTTPONLY= True
 
 X_FRAME_OPTIONS = 'DENY'
 
