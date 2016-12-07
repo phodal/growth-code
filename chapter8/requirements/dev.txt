@@ -1,0 +1,11 @@
+Django==1.10.2
+django-markdown-app
+djangorestframework==3.5.3
+djangorestframework-jwt==1.8.0
+django-cors-headers==1.1.0
+graphene-django>=1.0
+selenium==3.0.1
+fabric3==1.12.post1
+pep8==1.7.0
+pylint==1.6.4
+pylint-django==0.7.2
