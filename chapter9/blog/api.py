@@ -1,10 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import permissions
 from rest_framework import serializers, viewsets
-
 from blog.models import Blog
-
-SAFE_METHODS = ['GET', 'HEAD', 'OPTIONS']
 
 
 class BlogSerializer(serializers.ModelSerializer):
