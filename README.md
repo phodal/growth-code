@@ -17,6 +17,7 @@
  devops     | 部署相关的配置文件
  tdd        | 一个简单的 TDD Demo
 
+**混合应用代码**： [https://github.com/phodal/growth-paper-hybrid](https://github.com/phodal/growth-paper-hybrid)
 
 Jenkins插件
 ---
