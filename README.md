@@ -1,4 +1,4 @@
-《Growth: 全栈Web开发思想》源码
+《全栈应用开发：精益实践》源码
 ===
 
 > The Source Code of Growth Paper
